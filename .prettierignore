@@ -1,0 +1,7 @@
+package.json
+package-lock.json
+.github/
+.git
+README.md
+*.md
+*.yml

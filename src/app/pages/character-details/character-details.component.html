@@ -1,0 +1,10 @@
+<h1>{{ character.name }}</h1>
+<p>{{ character.description }}</p>
+<img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" alt="{{ character.name }}" />
+
+<h2>Comic Appearances</h2>
+<ul>
+  <li *ngFor="let comic of character.comics.items">
+    {{ comic.name }}
+  </li>
+</ul>

@@ -1,0 +1,31 @@
+<div class="search-container">
+  <div class="search-container-content">
+    <h1>Search for Marvel Characters</h1>
+    <form (submit)="getSearchResults()" action="#">
+      <input placeholder="Search for a Marvel Character (ex: Spider)" type="text" name="search" [(ngModel)]="searchTerms" />
+      <!-- <button mat-raised-button type="submit" class="successButton" id="invSearch" title="Click to perform search." >Search</button> -->
+      <button type="submit">Submit</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Image</td>
+          <td>Description</td>
+          <td>Comic Appearances (#)</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let character of searchResults">
+          <td>
+            <a routerLink="/details/{{ character.id }}" routerLinkActive="active">{{ character.name }}</a>
+          </td>
+          <td><img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" alt="{{ character.name }}" /></td>
+          <td>{{ character.description }}</td>
+          <td>{{ character.comics.available }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
