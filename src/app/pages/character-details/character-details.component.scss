@@ -1,0 +1,13 @@
+.character-details {
+  padding: 25px 10px 15px 10px;
+  box-sizing: border-box;
+
+  &-card {
+    width: 800px;
+    max-width: 90%;
+  }
+}
+
+.mat-card-header-text {
+  margin-left: 0;
+}

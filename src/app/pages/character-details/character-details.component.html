@@ -1,10 +1,36 @@
-<h1>{{ character.name }}</h1>
-<p>{{ character.description }}</p>
-<img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" alt="{{ character.name }}" />
+<button mat-raised-button color="primary" (click)="goToSearch()">Back to Search</button>
+<div class="character-details">
+  <mat-card class="character-details-card" *ngIf="character">
+    <mat-card-header>
+      <mat-card-title>{{ character?.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{ character?.thumbnail.path }}.{{ character?.thumbnail.extension }}" alt="{{ character?.name }}" />
+    <mat-card-content>
+      <p>
+        {{ character?.description }}
+      </p>
 
-<h2>Comic Appearances</h2>
-<ul>
-  <li *ngFor="let comic of character.comics.items">
-    {{ comic.name }}
-  </li>
-</ul>
+      <h2>Comic Appearances</h2>
+      <ul *ngIf="character?.comics?.items?.length > 0">
+        <li *ngFor="let comic of character?.comics.items">
+          {{ comic.name }}
+        </li>
+      </ul>
+      <p *ngIf="character?.comics.items.length === 0">
+        This character has not appeared in any comics.
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="character-details" *ngIf="!character">
+    <mat-card-header>
+      <mat-card-title>This character does not exist!</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{ character?.thumbnail.path }}.{{ character?.thumbnail.extension }}" alt="{{ character?.name }}" />
+    <mat-card-content>
+      <p>
+        Looks like you reached this page by mistake. Please go back to search for another character?.
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

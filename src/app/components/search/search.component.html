@@ -1,1 +1,8 @@
-<p>search works!</p>
+<form (submit)="submitHandler()" action="#" class="search-box">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Search for a Marvel Character</mat-label>
+
+    <input matInput placeholder="Search for a Marvel Character (ex: Spider)" type="text" name="search" [(ngModel)]="searchTerms" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

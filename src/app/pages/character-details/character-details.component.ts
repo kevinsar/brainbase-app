@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterDetails } from 'src/app/models/character-detail.model';
 
 @Component({
@@ -9,11 +9,15 @@ import { CharacterDetails } from 'src/app/models/character-detail.model';
 })
 export class CharacterDetailsComponent implements OnInit {
   character: CharacterDetails;
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.route.data.subscribe(data => {
-      this.character = data.characterData.data.results[0];
+      this.character = data.characterData?.data.results[0];
     });
   }
 
   ngOnInit(): void {}
+
+  goToSearch(): void {
+    this.router.navigate(['']);
+  }
 }

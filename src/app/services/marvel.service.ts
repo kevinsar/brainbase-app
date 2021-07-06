@@ -11,15 +11,14 @@ export class MarvelService {
   constructor(private http: HttpClient, private md5: Md5) {}
 
   getCharactersBySearchTerm(searchTerms: string): Observable<Object> {
-    return this.http.get(`${environment.marvelBaseApi}/characters${this.apiCredentials}&nameStartsWith=${searchTerms}`);
+    return this.http.get(`${environment.marvelBaseApi}/characters${this.getApiCredentials()}&nameStartsWith=${searchTerms}`);
   }
 
   getCharacterDetails(characterId: string): Observable<Object> {
-    return this.http.get(`${environment.marvelBaseApi}/characters/${characterId}${this.apiCredentials}`);
+    return this.http.get(`${environment.marvelBaseApi}/characters/${characterId}${this.getApiCredentials()}`);
   }
 
-  get apiCredentials(): string {
-    const timeStamp = new Date();
+  getApiCredentials(timeStamp = new Date()): string {
     const hash = String(Md5.hashStr(`${timeStamp}${environment.marvelHashKey}${environment.marvelApiKey}`));
 
     return `?ts=${timeStamp}&apikey=${environment.marvelApiKey}&hash=${hash}`;

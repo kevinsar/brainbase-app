@@ -1,0 +1,23 @@
+.character-search-results {
+  width: 100%;
+  img {
+    max-width: 100%;
+    width: 250px;
+    margin: 5px 5px 5px 0;
+    cursor: pointer;
+  }
+
+  p {
+    padding: 5px 10px 5px 0;
+    font-size: 13px;
+
+    &.name {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    &.description {
+      padding-left: 10px;
+    }
+  }
+}

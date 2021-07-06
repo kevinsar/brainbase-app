@@ -1,4 +1,7 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
 
 import { CharacterDetailsComponent } from './character-details.component';
 
@@ -8,7 +11,12 @@ describe('CharacterDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CharacterDetailsComponent]
+      providers: [
+        { provide: ActivatedRoute, useValue: { data: of({ characterData: { data: { results: [] } } }) } },
+        { provide: Router, useValue: { navigate: () => {} } }
+      ],
+      declarations: [CharacterDetailsComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 
@@ -20,5 +28,13 @@ describe('CharacterDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('goToSearch', () => {
+    it('should call on navigate router', () => {
+      spyOn(component['router'], 'navigate');
+      component.goToSearch();
+      expect(component['router'].navigate).toHaveBeenCalled();
+    });
   });
 });
